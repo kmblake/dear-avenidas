@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/kmblake/dear-avenidas#readme",
   "dependencies": {
-    "json-loader": "^0.5.4",
+    "raw-loader": "^0.5.1",
     "react": "^15.4.2",
     "react-bootstrap": "^0.30.8",
     "react-dom": "^15.4.2",
