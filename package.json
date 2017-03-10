@@ -1,0 +1,32 @@
+{
+  "name": "dear-avenidas",
+  "version": "1.0.0",
+  "description": "CS 247 Functional Prototype",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --hot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kmblake/dear-avenidas.git"
+  },
+  "author": "Kent Blake",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kmblake/dear-avenidas/issues"
+  },
+  "homepage": "https://github.com/kmblake/dear-avenidas#readme",
+  "dependencies": {
+    "json-loader": "^0.5.4",
+    "react": "^15.4.2",
+    "react-bootstrap": "^0.30.8",
+    "react-dom": "^15.4.2",
+    "react-router": "^3.0.2",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.4.1"
+  },
+  "devDependencies": {
+    "file-loader": "^0.10.1",
+    "url-loader": "^0.5.8"
+  }
+}
