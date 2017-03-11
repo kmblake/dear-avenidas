@@ -1,10 +1,6 @@
 import React from 'react';
 import path from 'path';
-// import ReactBootstrap from 'react-bootstrap';
 import { Button, Image, Collapse, Well, Row, Col } from 'react-bootstrap';
-
-// import { url } from 'url-loader'
-// import img from './assets/img/kent_profile.jpg'
 
 class Feed extends React.Component {
   constructor(props) {
@@ -63,10 +59,9 @@ class FeedItem extends React.Component {
           </div>
         
           <div className="panel-body">
-            {this.props.question.question}
-            <Button onClick={ ()=> this.setState({ open: !this.state.open })}>
-              click
-            </Button>
+            <div onClick={ ()=> this.setState({ open: !this.state.open })}>
+              {this.props.question.question}
+            </div>
             <Collapse in={this.state.open}>
               <div>
                 <Well>

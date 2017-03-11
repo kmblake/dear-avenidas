@@ -10,11 +10,11 @@
     },
     {
       "id":2,
-      "profile": "profile.png",
-      "question": "How did you keep in touch with your friends from high school or college?",
-      "subject": "Staying in Touch",
-      "tag": "Relationships",
-      "answer": "stay_in_touch.png"
+      "profile": "kent_profile.jpg",
+      "question": "If you had to live your life over, would you pursue a different career?",
+      "subject": "A Different Career?",
+      "tag": "Career",
+      "answer": "answer_2.png"
     },
     {
       "id":3,
