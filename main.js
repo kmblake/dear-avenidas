@@ -10,7 +10,8 @@ ReactDOM.render((
    <Router history = {browserHistory}>
       <Route path = "/" component = {App}>
          <IndexRoute component = {Feed} />
-         <Route path = "feed" component = {Feed} />
+         <Route path = "feed?q=:query" component = {Feed} />
+         <Route path = "feed/:query" component = {Feed} />
          <Route path = "inbox" component = {Inbox} />
       </Route>
    </Router>

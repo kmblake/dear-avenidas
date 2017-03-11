@@ -4,9 +4,11 @@ import { Navbar, NavItem, NavDropdown, MenuItem, Nav, FormGroup, FormControl, Bu
 import Compose from './Compose.jsx';
 import {
   BrowserRouter as Router,
+  BrowserHistory,
   Route,
   Link
 } from 'react-router-dom';
+import {history} from 'react-router/lib/BrowserHistory';
 import { LinkContainer } from 'react-router-bootstrap';
 
 
@@ -35,6 +37,15 @@ class App extends React.Component {
     this.setState({showCompose: true});
   }
 
+  submitSearch() {
+    // var elements = this.refs.form.getDOMNode().elements;
+    const q = this.state.input.value;
+    const location = {
+      pathname: '/feed?q=' + q
+    }
+    this.props.router.push(location);
+  }
+
   render() {
     return (
       <div>
@@ -48,10 +59,10 @@ class App extends React.Component {
             <Navbar.Collapse>
               <Navbar.Form pullLeft>
                 <FormGroup>
-                  <FormControl type="text" placeholder="Search" />
+                  <FormControl type="text" placeholder="Search" inputRef={ref => { this.state.input = ref; }} />
                 </FormGroup>
                 {' '}
-                <Button type="submit">Submit</Button>
+                <Button type="submit" onClick={() => this.submitSearch()}>Submit</Button>
               </Navbar.Form>
               <Nav pullRight>
                 <LinkContainer to="/">

@@ -19,6 +19,7 @@ class Feed extends React.Component {
   }
 
   render() {
+    console.log(this.props)
     return (
       <div className="container">
         <ul className="list-group">
