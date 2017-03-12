@@ -17,25 +17,6 @@ class Feed extends React.Component {
     }
   }
 
-  getInitialState () {
-    return { searchTerm: '' }
-  }
-
-  // componentDidMount() {
-  //   console.log(this.data)
-  //   if (this.props.params.query) {
-  //     const filteredData = this.data.filter(createFilter(this.props.params.query, KEYS_TO_FILTERS))
-  //   }
-  //   this.setState({questions: filteredData});
-  // }
-
-  // componentWillReceiveProps(nextProps) {
-  //   if (nextProps.params.query) {
-  //     const filteredData = this.data.filter(createFilter(nextProps.params.query, KEYS_TO_FILTERS))
-  //     this.setState({questions: filteredData});
-  //   }
-  // }
-
   searchUpdated (term) {
     this.setState({searchTerm: term})
   }

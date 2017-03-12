@@ -1,6 +1,6 @@
 import React from 'react';
 // import ReactBootstrap from 'react-bootstrap';
-import { Navbar, NavItem, NavDropdown, MenuItem, Nav, FormGroup, FormControl, Button, Form, ControlLabel} from 'react-bootstrap';
+import { Navbar, NavItem, NavDropdown, MenuItem, Nav, FormGroup, FormControl, Button, Form, ControlLabel, Alert} from 'react-bootstrap';
 import Compose from './Compose.jsx';
 import {
   BrowserRouter as Router,
@@ -17,20 +17,45 @@ class App extends React.Component {
     super(props);
 
     this.state = {
-      showCompose: false
+      showCompose: false,
+      messageSent: false,
+      followUpSent: false
     }
   }
 
-  onComposeClosed() {
-      this.setState({ showCompose: false})
+  onComposeClosed(messageSent) {
+      this.setState({ showCompose: false, messageSent: messageSent})
   }
 
   renderCompose() {
     if (this.state.showCompose) 
       return <Compose
-              notifyParent={() => this.onComposeClosed() }
+              notifyParent={(messageSent) => this.onComposeClosed(messageSent) }
             />
     console.log("Compose")
+  }
+
+  renderAlert() {
+    var msg = "";
+    if (this.state.messageSent) {
+      msg = 'Your question has been submitted!'
+    } else if (this.state.followUpSent) {
+      msg = 'Your follow up question has been submitted!'
+    }
+    if (this.state.messageSent || this.state.followUpSent) {
+      setTimeout(() => this.setState({messageSent: false, followUpSent: false}), 1800)
+      return (
+        <Alert bsStyle="success">
+          <strong>{msg}</strong> You should recieve a reply within a week...we'll keep you posted :)
+        </Alert>
+      );
+    } else {
+      return (
+        <div>
+        </div>
+      );
+    }
+    
   }
 
   revealCompose() {
@@ -57,13 +82,6 @@ class App extends React.Component {
               <Navbar.Toggle />
             </Navbar.Header>
             <Navbar.Collapse>
-              <Navbar.Form pullLeft>
-                <FormGroup>
-                  <FormControl type="text" placeholder="Search" inputRef={ref => { this.state.input = ref; }} />
-                </FormGroup>
-                {' '}
-                <Button type="submit" onClick={() => this.submitSearch()}>Submit</Button>
-              </Navbar.Form>
               <Nav pullRight>
                 <LinkContainer to="/">
                   <NavItem eventKey={1} href="#">Home</NavItem>
@@ -79,6 +97,7 @@ class App extends React.Component {
               </Nav>
             </Navbar.Collapse>
         </Navbar>
+        {this.renderAlert()}
         {this.renderCompose()}
         {this.props.children}
       </div>
