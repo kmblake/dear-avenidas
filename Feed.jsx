@@ -1,29 +1,52 @@
 import React from 'react';
 import path from 'path';
 import { Button, Image, Collapse, Well, Row, Col } from 'react-bootstrap';
+import SearchInput, {createFilter} from 'react-search-input';
+
+const KEYS_TO_FILTERS = ['question', 'subject', 'tag']
 
 class Feed extends React.Component {
   constructor(props) {
     super(props);
-
+    const data_string = require('./assets/data.json');
+    const data = JSON.parse(data_string);
+    this.questions = data.questions
     this.state = {
-      questions: []
+      questions: this.questions,
+      searchTerm: ''
     }
   }
 
-  componentDidMount() {
-    const data_string = require('./assets/data.json');
-    const data = JSON.parse(data_string);
-    console.log(data)
-    this.setState({questions: data.questions});
+  getInitialState () {
+    return { searchTerm: '' }
+  }
+
+  // componentDidMount() {
+  //   console.log(this.data)
+  //   if (this.props.params.query) {
+  //     const filteredData = this.data.filter(createFilter(this.props.params.query, KEYS_TO_FILTERS))
+  //   }
+  //   this.setState({questions: filteredData});
+  // }
+
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.params.query) {
+  //     const filteredData = this.data.filter(createFilter(nextProps.params.query, KEYS_TO_FILTERS))
+  //     this.setState({questions: filteredData});
+  //   }
+  // }
+
+  searchUpdated (term) {
+    this.setState({searchTerm: term})
   }
 
   render() {
-    console.log(this.props)
+    const filteredQuestions = this.questions.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS))
     return (
       <div className="container">
+        <SearchInput className="search-input" onChange={(term) => this.searchUpdated(term)} />
         <ul className="list-group">
-          {this.state.questions.map(question =>
+          {filteredQuestions.map(question =>
             <FeedItem
               question={question}
               key={question.id}
