@@ -1,6 +1,6 @@
 import React from 'react';
 // import ReactBootstrap from 'react-bootstrap';
-import { Modal, Popover, Tooltip, OverlayTrigger, Button, FormGroup, ControlLabel, FormControl, HelpBlock} from 'react-bootstrap';
+import { Modal, Popover, Tooltip, OverlayTrigger, Button, FormGroup, ControlLabel, FormControl, HelpBlock, Checkbox, Row, Col, Image} from 'react-bootstrap';
 require('./assets/css/compose.scss');
 
 class Compose extends React.Component {
@@ -13,7 +13,8 @@ class Compose extends React.Component {
 
     this.state = {
       showModal: true,
-      subject: 'New Question'
+      subject: 'New Question',
+      isAnon: false
     }
   }
 
@@ -42,17 +43,8 @@ class Compose extends React.Component {
   }
 
   render() {
-    const popover = (
-      <Popover id="modal-popover" title="popover">
-        very popover. such engagement
-      </Popover>
-    );
-    const tooltip = (
-      <Tooltip id="modal-tooltip">
-        wow.
-      </Tooltip>
-    );
-
+    const profile = (this.state.isAnon) ? "profile.png" : "kent_profile.jpg";
+    const name = (this.state.isAnon) ? "Anonymous" : "John Doe";
     return (
       <div>
         <Modal className='custom-modal' show={this.state.showModal} onHide={() => this.close()}>
@@ -79,11 +71,25 @@ class Compose extends React.Component {
                   <option value="other">Relationships</option>
                 </FormControl>
               </FormGroup>
+              <Checkbox onClick={() => this.setState({isAnon: !this.state.isAnon})}>
+                <weak>Anonymous</weak>
+              </Checkbox>
             </form>
             
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={() => this.send()} bsStyle="primary" bsSize="large">Send</Button>
+            <Row className="compose-footer">
+              <Col xs={2}>
+                <Image src={require('./assets/img/' + profile)} circle responsive />
+              </Col>
+              <Col xs={7}>
+                <h4 className="pull-left">{name}</h4>
+              </Col>
+              <Col xs={3}>
+                <Button onClick={() => this.send()} bsStyle="primary" bsSize="large">Send</Button>
+              </Col>
+            </Row>
+            
           </Modal.Footer>
         </Modal>
       </div>
