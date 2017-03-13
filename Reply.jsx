@@ -53,7 +53,7 @@ class Reply extends React.Component {
             </Col>
             <Col xs={10}>
               <p>{this.reply.value}</p>
-              <weak>Your reply has been sent as a {replyType}!</weak>
+              <weak>Your reply will be sent as a {replyType} <strong>today</strong>!</weak>
             </Col>
             <Col xs={1}>
               <Image src={require('./assets/img/kent_profile.jpg')} circle responsive />
@@ -95,6 +95,7 @@ class Reply extends React.Component {
   }
 
   render() {
+    const timestamp = (this.state.replyOpen || this.state.replySent) ? (<div></div>) : (<weak>4 days ago</weak>);
     return (
         <div>
           <Well>
@@ -104,6 +105,7 @@ class Reply extends React.Component {
               </Col>
               <Col xs={10}>
                 <Image src={require('./assets/img/' + this.props.question.answer)} rounded responsive />
+                {timestamp}
               </Col>
               <Col xs={1}>
               </Col>

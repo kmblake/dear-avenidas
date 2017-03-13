@@ -71,9 +71,6 @@ class Compose extends React.Component {
                   <option value="other">Relationships</option>
                 </FormControl>
               </FormGroup>
-              <Checkbox onClick={() => this.setState({isAnon: !this.state.isAnon})}>
-                <weak>Anonymous</weak>
-              </Checkbox>
             </form>
             
           </Modal.Body>
@@ -82,8 +79,13 @@ class Compose extends React.Component {
               <Col xs={2}>
                 <Image src={require('./assets/img/' + profile)} circle responsive />
               </Col>
-              <Col xs={7}>
+              <Col xs={3}>
                 <h4 className="pull-left">{name}</h4>
+              </Col>
+              <Col xs={4}>
+                <Checkbox className="pull-left anonymous-checkbox" onClick={() => this.setState({isAnon: !this.state.isAnon})}>
+                  <weak>Anonymous</weak>
+                </Checkbox>
               </Col>
               <Col xs={3}>
                 <Button onClick={() => this.send()} bsStyle="primary" bsSize="large">Send</Button>

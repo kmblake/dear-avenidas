@@ -105,7 +105,7 @@ class App extends React.Component {
                 <OverlayTrigger placement="bottom" overlay={this.renderTooltip("Profile")}>
                   <LinkContainer to="/profile">
                     <NavItem eventKey={4} href="#">
-                      <Image src={require('./assets/img/profile_icon.png')} responsive />
+                      <Image className='profile-icon' src={require('./assets/img/kent_profile.jpg')} responsive circle />
                     </NavItem>
                   </LinkContainer>
                 </OverlayTrigger>
