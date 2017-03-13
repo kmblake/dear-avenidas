@@ -1,31 +1,49 @@
 {
-  "questions" : [
+  "questions" :[
     {
       "id":1,
-      "profile": "old_man.png",
-      "question": "How did you keep in touch with your friends from high school or college?",
-      "subject": "Staying in Touch",
-      "tag": "Relationships",
-      "answer": "stay_in_touch.png",
-      "about_me":"qisa.png"
+      "profile":"old_woman.png",
+      "question":"How did you keep in touch with your friends from high school or college?",
+      "subject":"Staying in Touch",
+      "tag":"Relationships",
+      "answer":"stay_in_touch.png",
+      "about_me":"elisa_bio.png"
     },
     {
       "id":2,
-      "profile": "old_woman.png",
-      "question": "If you had to live your life over, would you pursue a different career?",
-      "subject": "A Different Career?",
-      "tag": "Career",
-      "answer": "answer_2.png",
-      "about_me":"patty_may.png"
+      "profile":"old_woman2.png",
+      "question":"If you had to live your life over, would you pursue a different career?",
+      "subject":"A Different Career?",
+      "tag":"Careers",
+      "answer":"different_career.png",
+      "about_me":"pattymay_bio.png"
     },
     {
       "id":3,
-      "profile": "man.png",
-      "question": "How did you keep in touch with your friends from high school or college?",
-      "subject": "Staying in Touch",
-      "tag": "Relationships",
-      "answer": "stay_in_touch.png",
-      "about_me":"qisa.png"
+      "profile":"old_man.png",
+      "question":"What is something that you wish you had prioritized when you were in your 20s?",
+      "subject":"Sorting out my Priorities",
+      "tag":"Life Advice",
+      "answer":"prioritized_in_twenties.png",
+      "about_me":"gene_bio.png"
+    },
+    {
+      "id":4,
+      "profile":"old_woman.png",
+      "question":"Where is your favorite place to get coffee in the Palo Alto area?",
+      "subject":"Coupa or Philz?",
+      "tag":"Life Advice",
+      "answer":"coffee_answer.jpg",
+      "photo":"coffee.png"
+    },
+    {
+      "id":5,
+      "profile":"old_man2.png",
+      "question":"Do you have any tips for balancing your professional and personal priorities?",
+      "subject":"Work-Life Balance",
+      "tag":"Life Advice",
+      "answer":"worklife_answer.jpg",
+      "photo":"work_life.png"
     }
   ]
 }

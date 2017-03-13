@@ -1,6 +1,6 @@
 import React from 'react';
 import path from 'path';
-import { Button, Image, Collapse, Well, Row, Col, FormGroup, FormControl, ControlLabel, ListGroupItem } from 'react-bootstrap';
+import { Button, Image, Collapse, Well, Row, Col, FormGroup, FormControl, ControlLabel, ListGroupItem, Tooltip, OverlayTrigger } from 'react-bootstrap';
 import SearchInput, {createFilter} from 'react-search-input';
 
 const KEYS_TO_FILTERS = ['question', 'subject', 'tag']
@@ -50,7 +50,8 @@ class FeedItem extends React.Component {
       open: false,
       replyOpen: false,
       sending: false,
-      replySent: false
+      replySent: false,
+      hasOpenedAnswer: false
     }
   }
 
@@ -103,7 +104,75 @@ class FeedItem extends React.Component {
     this.setState({sending: false, replySent: true, replyOpen: false})
   }
 
+  renderAboutMe(question) {
+    if (question.about_me) {
+      return (
+        <Row>
+          <Col xs={1}>
+            <Image src={require('./assets/img/' + this.props.question.profile)} circle responsive className="pull-right" />
+          </Col>
+          <Col xs={11}>
+            <Image src={require('./assets/img/' + this.props.question.about_me)} responsive />
+          </Col>
+        </Row>
+      );
+    } else if (question.photo) {
+      return (
+        <Row>
+          <Col xs={112}>
+            <Image src={require('./assets/img/' + this.props.question.photo)} className="fill-horizontal" responsive />
+          </Col>
+        </Row>
+      );
+    }
+  }
+
+  renderPanelBody() {
+    const tooltip = (
+      <Tooltip id="tooltip" className="disabled">Click to see the answer!</Tooltip>
+    );
+    const panelBody = (
+      <div className="panel-body">
+        <div onClick={ ()=> this.setState({ open: !this.state.open, hasOpenedAnswer: true })}>
+          <p>{this.props.question.question}</p>
+          {this.renderAboutMe(this.props.question)}
+        </div>
+        <Collapse in={this.state.open}>
+          <div>
+            <Well>
+              <Row>
+                <Col xs={12}>
+                  <Image src={require('./assets/img/' + this.props.question.answer)} rounded responsive />
+                </Col>
+              </Row>
+              <Row>
+                <Col xs={12}>
+                  {this.renderButtons()}
+                  {this.renderReply()}
+                </Col>
+              </Row>
+            </Well>
+          </div>
+        </Collapse>
+      </div>
+    );
+    if (this.state.hasOpenedAnswer) {
+      return (
+        <div>
+          {panelBody}
+        </div>
+      );
+    } else {
+      return(
+        <OverlayTrigger placement="left" overlay={tooltip}>
+          {panelBody}
+        </OverlayTrigger>
+      );
+    }
+  }
+
 	render() {
+    
     return (
       <li className="no-border neutral-background list-group-item">
         <div className="panel panel-default">
@@ -115,38 +184,8 @@ class FeedItem extends React.Component {
               </Col>
             </Row>
           </div>
-        
-          <div className="panel-body">
-            <div onClick={ ()=> this.setState({ open: !this.state.open })}>
-              <p>{this.props.question.question}</p>
-              <Row>
-                <Col xs={1}>
-                  <Image src={require('./assets/img/' + this.props.question.profile)} circle responsive />
-                </Col>
-                <Col xs={11}>
-                  <Image src={require('./assets/img/' + this.props.question.about_me)} responsive />
-                </Col>
-              </Row>
-            </div>
-            <Collapse in={this.state.open}>
-              <div>
-                <Well>
-                  
-                  <Row>
-                    <Col xs={12}>
-                      <Image src={require('./assets/img/' + this.props.question.answer)} rounded responsive />
-                    </Col>
-                  </Row>
-                  <Row>
-                    <Col xs={12}>
-                      {this.renderButtons()}
-                      {this.renderReply()}
-                    </Col>
-                  </Row>
-                </Well>
-              </div>
-            </Collapse>
-          </div>
+          {this.renderPanelBody()}
+          
         </div>
       </li>
     );

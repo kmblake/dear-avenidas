@@ -1,7 +1,22 @@
 .custom-navbar {
   background: #1A7BBA;
   border-color: #1681C7;
+  /*min-height: 60px;*/
   a {
     color: white !important;
+  }
+  .navbar-header {
+    margin-left: 55px;
+  }
+}
+
+.logo {
+  margin-top: -8px;
+  height: 175%;
+}
+
+.navbar-inverse .nav > .active {
+  a, a:hover, a:focus {
+    background: #2D9CDB;
   }
 }

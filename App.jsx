@@ -1,6 +1,6 @@
 import React from 'react';
 // import ReactBootstrap from 'react-bootstrap';
-import { Navbar, NavItem, NavDropdown, MenuItem, Nav, FormGroup, FormControl, Button, Form, ControlLabel, Alert} from 'react-bootstrap';
+import { Navbar, NavItem, NavDropdown, MenuItem, Nav, FormGroup, FormControl, Button, Form, ControlLabel, Alert, Image, Thumbnail} from 'react-bootstrap';
 import Compose from './Compose.jsx';
 import {
   BrowserRouter as Router,
@@ -78,7 +78,7 @@ class App extends React.Component {
         <Navbar inverse collapseOnSelect className="custom-navbar">
             <Navbar.Header>
               <Navbar.Brand>
-                <Link to="/">Dear-Avenidas</Link>
+                <Link to="/"><Image src={require('./assets/img/logo2.png')} responsive className="logo" /></Link>
               </Navbar.Brand>
               <Navbar.Toggle />
             </Navbar.Header>
