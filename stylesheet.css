@@ -18,6 +18,10 @@ body {
   width: 100%;
 }
 
+.custom-panel-heading {
+  background: none !important;
+}
+
 .search-input {
   padding: 10px 10px;
   height: 52px;
@@ -50,4 +54,17 @@ body {
 
 .search-input > input:focus {
   outline: none;
+}
+
+.btn-primary {
+  background-image: none;
+  background: #1A7BBA;
+}
+
+.btn-info {
+  background-image: none;
+}
+
+weak {
+  color: gray;
 }

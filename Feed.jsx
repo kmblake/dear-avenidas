@@ -1,7 +1,8 @@
 import React from 'react';
 import path from 'path';
-import { Button, Image, Collapse, Well, Row, Col, FormGroup, FormControl, ControlLabel, ListGroupItem, Tooltip, OverlayTrigger } from 'react-bootstrap';
+import { Button, Image, Collapse, Well, Row, Col, FormGroup, FormControl, ControlLabel, ListGroupItem, Tooltip, OverlayTrigger, Thumbnail } from 'react-bootstrap';
 import SearchInput, {createFilter} from 'react-search-input';
+import Reply from './Reply.jsx';
 
 const KEYS_TO_FILTERS = ['question', 'subject', 'tag']
 
@@ -48,60 +49,9 @@ class FeedItem extends React.Component {
 
     this.state = {
       open: false,
-      replyOpen: false,
-      sending: false,
-      replySent: false,
-      hasOpenedAnswer: false
+      hasOpenedAnswer: false,
+      liked: false
     }
-  }
-
-  renderButtons() {
-    if (this.props.inbox && !this.state.replyOpen && !this.state.replySent) {
-      return (
-        <Button onClick={() => this.setState({replyOpen: true})}>Reply</Button>
-      );
-    }
-  }
-
-  renderReply() {
-    if (this.state.replyOpen) {
-      return (
-        <form>
-          <FormGroup controlId="formControlsTextarea">
-            <ControlLabel>Reply</ControlLabel>
-            <FormControl ref="reply" componentClass="textarea" placeholder="Type your reply here" inputRef={ref => { this.reply = ref; }} />
-          </FormGroup>
-          { this.renderSending() }
-        </form>
-      );
-    } else if (this.state.replySent) {
-      return (
-        <p>Reply: {this.reply.value}</p>
-      );
-    }
-  }
-
-  renderSending() {
-    console.log(this.refs)
-    if (this.state.sending) {
-      return (
-        <Row>
-          <Col md={6}>
-            <Button onClick={() => this.sendReply()}>Send as Note (free)</Button>
-          </Col>
-          <Col md={6}>
-            <Button onClick={() => this.sendReply()}>Send as Card ($3.99)
-            </Button>
-          </Col>
-        </Row>
-      );
-    } else {
-      return (<Button onClick={() => this.setState({sending: true})}>Send</Button>);
-    }
-  }
-
-  sendReply() {
-    this.setState({sending: false, replySent: true, replyOpen: false})
   }
 
   renderAboutMe(question) {
@@ -127,17 +77,17 @@ class FeedItem extends React.Component {
     }
   }
 
-  renderPanelBody() {
-    const tooltip = (
-      <Tooltip id="tooltip" className="disabled">Click to see the answer!</Tooltip>
-    );
-    const panelBody = (
-      <div className="panel-body">
-        <div onClick={ ()=> this.setState({ open: !this.state.open, hasOpenedAnswer: true })}>
-          <p>{this.props.question.question}</p>
-          {this.renderAboutMe(this.props.question)}
-        </div>
-        <Collapse in={this.state.open}>
+  renderAnswer() {
+    const heart_img = (this.state.liked) ? 'heart_filled.png' : 'heart_empty.png';
+    const like_count = (this.state.liked) ? this.props.question.likes : this.props.question.likes + 1
+    if (this.props.inbox) {
+      return (
+        <Reply
+          question={this.props.question}
+        />
+      );
+    } else {
+      return (
           <div>
             <Well>
               <Row>
@@ -145,14 +95,38 @@ class FeedItem extends React.Component {
                   <Image src={require('./assets/img/' + this.props.question.answer)} rounded responsive />
                 </Col>
               </Row>
-              <Row>
-                <Col xs={12}>
-                  {this.renderButtons()}
-                  {this.renderReply()}
-                </Col>
-              </Row>
             </Well>
+            <Row>
+              <Col xs={1}>
+                <Image className="like-button pull-right" src={require('./assets/img/' + heart_img)} onClick={() => this.setState({liked: !this.state.liked})} />
+              </Col>
+              <Col xs={2} className="like-button-label">
+                <h4 className="pull-left">{like_count}</h4>
+              </Col>
+              <Col xs={7}>
+              </Col>
+              <Col xs={2} className="date-label">
+                <weak className="pull-right">{this.props.question.days_ago} days ago</weak>
+              </Col>
+            </Row>
           </div>
+      );
+    }
+  }
+
+  renderPanelBody() {
+    const tooltip = (
+      <Tooltip id="tooltip" className="disabled">Click to see the answer!</Tooltip>
+    );
+    
+    const panelBody = (
+      <div className="panel-body">
+        <div onClick={ ()=> this.setState({ open: !this.state.open, hasOpenedAnswer: true })}>
+          <p>{this.props.question.question}</p>
+          {this.renderAboutMe(this.props.question)}
+        </div>
+        <Collapse in={this.state.open}>
+          {this.renderAnswer()}
         </Collapse>
       </div>
     );
@@ -176,7 +150,7 @@ class FeedItem extends React.Component {
     return (
       <li className="no-border neutral-background list-group-item">
         <div className="panel panel-default">
-          <div className="panel-heading">
+          <div className="custom-panel-heading panel-heading">
             <Row>
               <Col xs={12}>
                 <h3 className="panel-title pull-right">{this.props.question.tag}</h3>

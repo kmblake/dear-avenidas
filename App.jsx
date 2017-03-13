@@ -1,6 +1,6 @@
 import React from 'react';
 // import ReactBootstrap from 'react-bootstrap';
-import { Navbar, NavItem, NavDropdown, MenuItem, Nav, FormGroup, FormControl, Button, Form, ControlLabel, Alert, Image, Thumbnail} from 'react-bootstrap';
+import { Navbar, NavItem, NavDropdown, MenuItem, Nav, FormGroup, FormControl, Button, Form, ControlLabel, Alert, Image, Thumbnail, Tooltip, OverlayTrigger} from 'react-bootstrap';
 import Compose from './Compose.jsx';
 import {
   BrowserRouter as Router,
@@ -72,6 +72,12 @@ class App extends React.Component {
     this.props.router.push(location);
   }
 
+  renderTooltip(msg) {
+    return (
+      <Tooltip id="tooltip">{msg}</Tooltip>
+    );
+  }
+
   render() {
     return (
       <div>
@@ -84,17 +90,25 @@ class App extends React.Component {
             </Navbar.Header>
             <Navbar.Collapse>
               <Nav pullRight>
-                <LinkContainer to="/">
-                  <NavItem eventKey={1} href="#">Home</NavItem>
-                </LinkContainer>
-                <NavItem eventKey={2} href="#" onClick={()=> this.setState({ showCompose: true })}>Compose</NavItem>
-                
-                <LinkContainer to="/inbox">
-                  <NavItem eventKey={3} href="#">Inbox</NavItem>
-                </LinkContainer>
-                <LinkContainer to="/profile">
-                  <NavItem eventKey={4} href="#">Profile</NavItem>
-                </LinkContainer>
+                <OverlayTrigger placement="bottom" overlay={this.renderTooltip("Ask a Question")}>
+                  <NavItem eventKey={2} href="#" onClick={()=> this.setState({ showCompose: true })}>
+                    <Image src={require('./assets/img/pencil_icon.png')} responsive />
+                  </NavItem>
+                </OverlayTrigger>
+                <OverlayTrigger placement="bottom" overlay={this.renderTooltip("Inbox")}>
+                  <LinkContainer to="/inbox">
+                    <NavItem eventKey={3} href="#">
+                      <Image src={require('./assets/img/inbox_icon.png')} responsive />
+                    </NavItem>
+                  </LinkContainer>
+                </OverlayTrigger>
+                <OverlayTrigger placement="bottom" overlay={this.renderTooltip("Profile")}>
+                  <LinkContainer to="/profile">
+                    <NavItem eventKey={4} href="#">
+                      <Image src={require('./assets/img/profile_icon.png')} responsive />
+                    </NavItem>
+                  </LinkContainer>
+                </OverlayTrigger>
               </Nav>
             </Navbar.Collapse>
         </Navbar>

@@ -11,12 +11,28 @@
 }
 
 .logo {
-  margin-top: -8px;
   height: 175%;
 }
 
 .navbar-inverse .nav > .active {
   a, a:hover, a:focus {
     background: #2D9CDB;
+  }
+}
+
+.like-button {
+  cursor: pointer;
+}
+
+.like-button-label {
+  padding-left: 0px;
+  color: #1A7BBA;
+}
+
+.date-label {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  weak {
+    padding-right: 10px;
   }
 }

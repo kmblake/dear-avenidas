@@ -1,6 +1,7 @@
 import React from 'react';
 // import ReactBootstrap from 'react-bootstrap';
 import { Modal, Popover, Tooltip, OverlayTrigger, Button, FormGroup, ControlLabel, FormControl, HelpBlock} from 'react-bootstrap';
+require('./assets/css/compose.scss');
 
 class Compose extends React.Component {
   // getInitialState() {
@@ -40,30 +41,6 @@ class Compose extends React.Component {
     );
   }
 
-  // renderForm() {
-  //   return (
-  //     <Form horizontal>
-  //       <FormGroup controlId="formSubject">
-  //         <Col componentClass={ControlLabel} sm={2}>
-  //           Subject
-  //         </Col>
-  //         <Col sm={10}>
-  //           <FormControl type="text" placeholder="Subject" />
-  //         </Col>
-  //       </FormGroup>
-
-  //       <FormGroup controlId="formQuestion">
-  //         <Col componentClass={ControlLabel} sm={2}>
-  //           Question
-  //         </Col>
-  //         <Col sm={10}>
-  //           <FormControl componentClass="textarea" placeholder="textarea" />
-  //         </Col>
-  //       </FormGroup>
-  //     </Form>
-  //   );
-  // }
-
   render() {
     const popover = (
       <Popover id="modal-popover" title="popover">
@@ -78,8 +55,8 @@ class Compose extends React.Component {
 
     return (
       <div>
-        <Modal show={this.state.showModal} onHide={() => this.close()}>
-          <Modal.Header closeButton>
+        <Modal className='custom-modal' show={this.state.showModal} onHide={() => this.close()}>
+          <Modal.Header className="custom-modal-header" closeButton>
             <Modal.Title>{this.state.subject}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
@@ -106,7 +83,7 @@ class Compose extends React.Component {
             
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={() => this.send()}>Send</Button>
+            <Button onClick={() => this.send()} bsStyle="primary" bsSize="large">Send</Button>
           </Modal.Footer>
         </Modal>
       </div>

@@ -7,7 +7,9 @@
       "subject":"Staying in Touch",
       "tag":"Relationships",
       "answer":"stay_in_touch.png",
-      "about_me":"elisa_bio.png"
+      "about_me":"elisa_bio.png",
+      "likes":3,
+      "days_ago":2
     },
     {
       "id":2,
@@ -16,7 +18,9 @@
       "subject":"A Different Career?",
       "tag":"Careers",
       "answer":"different_career.png",
-      "about_me":"pattymay_bio.png"
+      "about_me":"pattymay_bio.png",
+      "likes":16,
+      "days_ago":4
     },
     {
       "id":3,
@@ -25,7 +29,9 @@
       "subject":"Sorting out my Priorities",
       "tag":"Life Advice",
       "answer":"prioritized_in_twenties.png",
-      "about_me":"gene_bio.png"
+      "about_me":"gene_bio.png",
+      "likes":4,
+      "days_ago":6
     },
     {
       "id":4,
@@ -34,7 +40,9 @@
       "subject":"Coupa or Philz?",
       "tag":"Life Advice",
       "answer":"coffee_answer.jpg",
-      "photo":"coffee.png"
+      "photo":"coffee.png",
+      "likes":10,
+      "days_ago":7
     },
     {
       "id":5,
@@ -43,7 +51,9 @@
       "subject":"Work-Life Balance",
       "tag":"Life Advice",
       "answer":"worklife_answer.jpg",
-      "photo":"work_life.png"
+      "photo":"work_life.png",
+      "likes":11,
+      "days_ago":10
     }
   ]
 }
