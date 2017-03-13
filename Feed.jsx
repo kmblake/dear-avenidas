@@ -1,6 +1,6 @@
 import React from 'react';
 import path from 'path';
-import { Button, Image, Collapse, Well, Row, Col } from 'react-bootstrap';
+import { Button, Image, Collapse, Well, Row, Col, FormGroup, FormControl, ControlLabel, ListGroupItem } from 'react-bootstrap';
 import SearchInput, {createFilter} from 'react-search-input';
 
 const KEYS_TO_FILTERS = ['question', 'subject', 'tag']
@@ -8,7 +8,7 @@ const KEYS_TO_FILTERS = ['question', 'subject', 'tag']
 class Feed extends React.Component {
   constructor(props) {
     super(props);
-    const data_string = require('./assets/data.json');
+    const data_string = (props.inbox) ? require('./assets/my_questions.json') : require('./assets/feed.json');
     const data = JSON.parse(data_string);
     this.questions = data.questions
     this.state = {
@@ -25,12 +25,15 @@ class Feed extends React.Component {
     const filteredQuestions = this.questions.filter(createFilter(this.state.searchTerm, KEYS_TO_FILTERS))
     return (
       <div className="container">
-        <SearchInput className="search-input" onChange={(term) => this.searchUpdated(term)} />
-        <ul className="list-group">
+        <ul>
+          <ListGroupItem className="no-border neutral-background">
+            <SearchInput className="search-input form-control" onChange={(term) => this.searchUpdated(term)} />
+          </ListGroupItem>
           {filteredQuestions.map(question =>
             <FeedItem
               question={question}
               key={question.id}
+              inbox={this.props.inbox}
             />
           )}
         </ul>
@@ -44,35 +47,100 @@ class FeedItem extends React.Component {
     super(props);
 
     this.state = {
-      open: false
+      open: false,
+      replyOpen: false,
+      sending: false,
+      replySent: false
     }
+  }
+
+  renderButtons() {
+    if (this.props.inbox && !this.state.replyOpen && !this.state.replySent) {
+      return (
+        <Button onClick={() => this.setState({replyOpen: true})}>Reply</Button>
+      );
+    }
+  }
+
+  renderReply() {
+    if (this.state.replyOpen) {
+      return (
+        <form>
+          <FormGroup controlId="formControlsTextarea">
+            <ControlLabel>Reply</ControlLabel>
+            <FormControl ref="reply" componentClass="textarea" placeholder="Type your reply here" inputRef={ref => { this.reply = ref; }} />
+          </FormGroup>
+          { this.renderSending() }
+        </form>
+      );
+    } else if (this.state.replySent) {
+      return (
+        <p>Reply: {this.reply.value}</p>
+      );
+    }
+  }
+
+  renderSending() {
+    console.log(this.refs)
+    if (this.state.sending) {
+      return (
+        <Row>
+          <Col md={6}>
+            <Button onClick={() => this.sendReply()}>Send as Note (free)</Button>
+          </Col>
+          <Col md={6}>
+            <Button onClick={() => this.sendReply()}>Send as Card ($3.99)
+            </Button>
+          </Col>
+        </Row>
+      );
+    } else {
+      return (<Button onClick={() => this.setState({sending: true})}>Send</Button>);
+    }
+  }
+
+  sendReply() {
+    this.setState({sending: false, replySent: true, replyOpen: false})
   }
 
 	render() {
     return (
-      <li className="no-border list-group-item">
+      <li className="no-border neutral-background list-group-item">
         <div className="panel panel-default">
           <div className="panel-heading">
-            <div className="row">
-              <div className="col-xs-1">
-               <Image src={require('./assets/img/' + this.props.question.profile)} circle responsive />
-              </div>
-              <div className="col-xs-11">
-                <h3 className="panel-title">{this.props.question.tag}</h3>
-              </div>
-            </div>
+            <Row>
+              <Col xs={12}>
+                <h3 className="panel-title pull-right">{this.props.question.tag}</h3>
+                <h3 className="panel-title">{this.props.question.subject}</h3>
+              </Col>
+            </Row>
           </div>
         
           <div className="panel-body">
             <div onClick={ ()=> this.setState({ open: !this.state.open })}>
-              {this.props.question.question}
+              <p>{this.props.question.question}</p>
+              <Row>
+                <Col xs={1}>
+                  <Image src={require('./assets/img/' + this.props.question.profile)} circle responsive />
+                </Col>
+                <Col xs={11}>
+                  <Image src={require('./assets/img/' + this.props.question.about_me)} responsive />
+                </Col>
+              </Row>
             </div>
             <Collapse in={this.state.open}>
               <div>
                 <Well>
+                  
                   <Row>
                     <Col xs={12}>
                       <Image src={require('./assets/img/' + this.props.question.answer)} rounded responsive />
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col xs={12}>
+                      {this.renderButtons()}
+                      {this.renderReply()}
                     </Col>
                   </Row>
                 </Well>

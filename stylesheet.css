@@ -1,3 +1,11 @@
+body {
+  background-color: #FDFCF8;
+}
+
+.neutral-background {
+  background-color: #FDFCF8;
+}
+
 .no-border {
 	border: none;
 }

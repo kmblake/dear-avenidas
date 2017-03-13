@@ -10,6 +10,7 @@ import {
 } from 'react-router-dom';
 import {history} from 'react-router/lib/BrowserHistory';
 import { LinkContainer } from 'react-router-bootstrap';
+require('./assets/css/app.scss');
 
 
 class App extends React.Component {
@@ -66,7 +67,7 @@ class App extends React.Component {
     // var elements = this.refs.form.getDOMNode().elements;
     const q = this.state.input.value;
     const location = {
-      pathname: '/feed?q=' + q
+      pathname: '/#feed?q=' + q
     }
     this.props.router.push(location);
   }
@@ -74,10 +75,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Navbar inverse collapseOnSelect>
+        <Navbar inverse collapseOnSelect className="custom-navbar">
             <Navbar.Header>
               <Navbar.Brand>
-                <a href="#">Dear-Avenidas</a>
+                <Link to="/">Dear-Avenidas</Link>
               </Navbar.Brand>
               <Navbar.Toggle />
             </Navbar.Header>
