@@ -65,6 +65,10 @@ body {
   background-image: none;
 }
 
+.theme-color {
+  color: #1A7BBA;
+}
+
 weak {
   color: gray;
 }

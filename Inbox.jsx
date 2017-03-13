@@ -17,7 +17,7 @@ class Inbox extends React.Component {
     console.log("rendering inbox");
     return (
       <div className="container">
-        <h1 className="centered">Your Questions</h1>
+        <h1 className="centered theme-color">Your Questions</h1>
         <Feed inbox="true"/>
       </div>
     );

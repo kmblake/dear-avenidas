@@ -12,6 +12,17 @@
       "days_ago":2
     },
     {
+      "id":5,
+      "profile":"old_man2.png",
+      "question":"Do you have any tips for balancing your professional and personal priorities?",
+      "subject":"Work-Life Balance",
+      "tag":"Life Advice",
+      "answer":"worklife_answer.jpg",
+      "photo":"work_life.png",
+      "likes":11,
+      "days_ago":10
+    },
+    {
       "id":2,
       "profile":"old_woman2.png",
       "question":"If you had to live your life over, would you pursue a different career?",
@@ -43,17 +54,6 @@
       "photo":"coffee.png",
       "likes":10,
       "days_ago":7
-    },
-    {
-      "id":5,
-      "profile":"old_man2.png",
-      "question":"Do you have any tips for balancing your professional and personal priorities?",
-      "subject":"Work-Life Balance",
-      "tag":"Life Advice",
-      "answer":"worklife_answer.jpg",
-      "photo":"work_life.png",
-      "likes":11,
-      "days_ago":10
     }
   ]
 }
