@@ -80,7 +80,7 @@ class FeedItem extends React.Component {
 
   renderAnswer() {
     const heart_img = (this.state.liked) ? 'heart_filled.png' : 'heart_empty.png';
-    const like_count = (this.state.liked) ? this.props.question.likes : this.props.question.likes + 1
+    const like_count = (this.state.liked) ? this.props.question.likes + 1 : this.props.question.likes;
     if (this.props.inbox) {
       return (
         <Reply
