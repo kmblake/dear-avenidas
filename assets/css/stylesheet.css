@@ -1,0 +1,41 @@
+body {
+  background-color: #FDFCF8;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.neutral-background {
+  background-color: #FDFCF8;
+}
+
+.no-border {
+	border: none;
+}
+
+.centered {
+  text-align: center;
+}
+
+.fill-horizontal {
+  width: 100%;
+}
+
+.custom-panel-heading {
+  background: none !important;
+}
+
+.btn-primary {
+  background-image: none;
+  background: #1A7BBA;
+}
+
+.btn-info {
+  background-image: none;
+}
+
+.theme-color {
+  color: #1A7BBA;
+}
+
+weak {
+  color: gray;
+}

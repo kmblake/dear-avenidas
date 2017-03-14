@@ -3,6 +3,7 @@ import path from 'path';
 import { Button, Image, Collapse, Well, Row, Col, FormGroup, FormControl, ControlLabel, ListGroupItem, Tooltip, OverlayTrigger, Thumbnail } from 'react-bootstrap';
 import SearchInput, {createFilter} from 'react-search-input';
 import Reply from './Reply.jsx';
+require('./assets/css/feed.scss');
 
 const KEYS_TO_FILTERS = ['question', 'subject', 'tag']
 
