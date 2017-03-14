@@ -69,7 +69,7 @@ class Reply extends React.Component {
       return (
         <Row>
           <Col md={6}>
-            <Button bsStyle="primary pull-right" onClick={() => this.sendReply(true)}>Send as Note (free)</Button>
+            <Button bsStyle="primary" className="pull-right" onClick={() => this.sendReply(true)}>Send as Note (free)</Button>
           </Col>
           <Col md={6}>
             <Button bsStyle="info" onClick={() => this.sendReply(false)}>Send as Card ($3.99)
@@ -117,11 +117,6 @@ class Reply extends React.Component {
               </Col>
             </Row>
           </Well>
-          <Row>
-            <Col xs={12} className="date-label">
-              <weak className="pull-right">{this.props.question.days_ago} days ago</weak>
-            </Col>
-          </Row>
         </div>
     );
   }

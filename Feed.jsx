@@ -153,7 +153,7 @@ class FeedItem extends React.Component {
           <div className="custom-panel-heading panel-heading">
             <Row>
               <Col xs={12}>
-                <h3 className="panel-title pull-right">{this.props.question.tag}</h3>
+                <h3 className="panel-title pull-right"><weak>{this.props.question.tag}</weak></h3>
                 <h3 className="panel-title">{this.props.question.subject}</h3>
               </Col>
             </Row>

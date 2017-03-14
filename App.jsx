@@ -98,7 +98,7 @@ class App extends React.Component {
                 <OverlayTrigger placement="bottom" overlay={this.renderTooltip("Inbox")}>
                   <LinkContainer to="/inbox">
                     <NavItem eventKey={3} href="#">
-                      <Image src={require('./assets/img/inbox_icon.png')} responsive />
+                      <Image className='inbox-icon' src={require('./assets/img/inbox_icon.png')} responsive />
                     </NavItem>
                   </LinkContainer>
                 </OverlayTrigger>
