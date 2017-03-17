@@ -33,7 +33,12 @@ class Feed extends React.Component {
             questions: this.questions,
             searchTerm: ''
         }
-        this.searchUpdated = this.searchUpdated.bind(this);
+        this.searchUpdated = this.tagFilter.bind(this);
+    }
+
+    tagFilter(term) {
+        this.setState({searchTerm: term});
+        this.refs['search-input'].setState({searchTerm: term})
     }
 
     searchUpdated(term) {
@@ -46,7 +51,7 @@ class Feed extends React.Component {
             <div className="container">
                 <ul>
                     <ListGroupItem className="no-border neutral-background">
-                        <SearchInput className="search-input form-control" onChange={(term) => this.searchUpdated(term)}/>
+                        <SearchInput ref="search-input" className="search-input form-control" onChange={(term) => this.searchUpdated(term)}/>
                     </ListGroupItem>
                     {filteredQuestions.map(question => <FeedItem question={question} key={question.id} inbox={this.props.inbox} searchUpdated={this.searchUpdated} />)}
                 </ul>
